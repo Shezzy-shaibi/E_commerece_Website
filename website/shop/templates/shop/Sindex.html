@@ -1,13 +1,220 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>shopapp</title>
-</head>
-<body>
-<h1>Hello my shop</h1>
-{% load static %}
-<a href="{% static 'static_shop/image.html' %}">           click me   </a>
+{% extends 'shop/basic.html' %}
+{% block title %} ShopNow {% endblock %}
+<style>
+  body .carousel-indicator li{
+    background-color: blue;
+  }
+  body .carousel-control-next-icon,
+  body .carousel-contron-prev-icon{
+    background-color: blue;
+  }
+</style>
 
-</body>
-</html>
+    {% block body %}
+  
+    <div id="demo" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+
+        {% for i in range %}
+
+        <li data-target="#demo" data-slide-to="{{i}}"></li>
+        {% endfor %}
+      </ol>
+  <div class="container carousel-inner no-padding">
+    <div class="carousel-item active">
+      
+      <section class="text-gray-700 body-font">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-wrap -m-4">
+            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <a class="block relative h-48 rounded overflow-hidden">
+                <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260">
+              </a>
+              <div class="mt-4">
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
+                <p class="mt-1">$16.00</p>
+              </div>
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                Buy
+              </button>
+            </div>
+           
+               
+            {% for i in products|slice:"1:" %}
+
+            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <a class="block relative h-48 rounded overflow-hidden">
+                <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/421x261">
+              </a>
+              <div class="mt-4">
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                <h2 class="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
+                <p class="mt-1">$21.15</p>
+              </div>
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                Buy
+              </button>
+            </div>
+          
+            {% if forloop.counter|divisibleby:7 and forloop.counter>0 and% and not forloop.last %}
+          </div> <div class="carousel-item ">
+            {% endif %}
+           {% endfor %}
+          </div>
+         
+          </div>
+        </div>
+        
+      </section>
+      </div>
+      <div class="carousel-item ">
+      
+        <section class="text-gray-700 body-font">
+          <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-wrap -m-4">
+              <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a class="block relative h-48 rounded overflow-hidden">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260">
+                </a>
+                <div class="mt-4">
+                  <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
+                  <p class="mt-1">$16.00</p>
+                </div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                  Buy
+                </button>
+              </div>
+             
+              <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a class="block relative h-48 rounded overflow-hidden">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/421x261">
+                </a>
+                <div class="mt-4">
+                  <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  <h2 class="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
+                  <p class="mt-1">$21.15</p>
+                </div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                  Buy
+                </button>
+              </div>
+  
+              <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a class="block relative h-48 rounded overflow-hidden">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/422x262">
+                </a>
+                <div class="mt-4">
+                  <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  <h2 class="text-gray-900 title-font text-lg font-medium">Neptune</h2>
+                  <p class="mt-1">$12.00</p>
+                </div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                  Buy
+                </button>
+              </div>
+  
+              <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a class="block relative h-48 rounded overflow-hidden">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/423x263">
+                </a>
+                <div class="mt-4">
+                  <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  <h2 class="text-gray-900 title-font text-lg font-medium">The 400 Blows</h2>
+                  <p class="mt-1">$18.40</p>
+                </div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                  Buy
+                </button>
+              </div>
+  
+              <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a class="block relative h-48 rounded overflow-hidden">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/424x264">
+                </a>
+                <div class="mt-4">
+                  <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
+                  <p class="mt-1">$16.00</p>
+                </div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                  Buy
+                </button>
+              </div>
+  
+              <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a class="block relative h-48 rounded overflow-hidden">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/425x265">
+                </a>
+                <div class="mt-4">
+                  <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  <h2 class="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
+                  <p class="mt-1">$21.15</p>
+                </div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                  Buy
+                </button>
+              </div>
+  
+  
+              <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a class="block relative h-48 rounded overflow-hidden">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/427x267">
+                </a>
+                <div class="mt-4">
+                  <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  <h2 class="text-gray-900 title-font text-lg font-medium">Neptune</h2>
+                  <p class="mt-1">$12.00</p>
+                </div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                  Buy
+                </button>
+              </div>
+  
+              <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a class="block relative h-48 rounded overflow-hidden">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/428x268">
+                </a>
+                <div class="mt-4">
+                  <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  <h2 class="text-gray-900 title-font text-lg font-medium">The 400 Blows</h2>
+                  <p class="mt-1">$18.40</p>
+                </div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                  Buy
+                </button>
+              </div>
+              
+            </div>
+          </div>
+        </section>
+        </div>
+    </div>
+    </div>
+    <div class="inline-flex mx-20 ">
+     
+      <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+          <a class="carousel-control-prev-icon" href="#demo" data-slide-to="prev">
+            <span class="carousel-control-prev-icon"></span>
+        Prev
+        </a>
+      </button>
+      
+      <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+        <a class="carousel-control-next-icon" href="#demo" data-slide-to="next">
+          <span class="carousel-control-next-icon"></span>
+        
+        Next
+        </a>
+      </button>
+    </div>
+   
+  
+    
+
+
+{% endblock %}
+      
+
