@@ -12,7 +12,12 @@
 </style>
 
     {% block body %}
+    {% load static %}
   
+
+   <h1>Fashion</h1>
+   <br>
+   <br>
     <div id="demo" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -28,14 +33,18 @@
       <section class="text-gray-700 body-font">
         <div class="container px-5 py-24 mx-auto">
           <div class="flex flex-wrap -m-4">
+
+
+
             <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
               <a class="block relative h-48 rounded overflow-hidden">
-                <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260">
+                <img alt="ecommerce" class="object-cover object-center w-full h-full block" src=' /media/ {{products.0.Product_image}} '>
               </a>
               <div class="mt-4">
-                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-                <p class="mt-1">$16.00</p>
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGARY</h3>
+                <h2 class="text-gray-900 title-font text-lg font-medium">{{myProducts.0.Product_name}}</h2>
+                <h4 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{myProducts.0.Product_desc}}</h4>
+                <p class="mt-1">${{myProducts.0.Product_price}}</p>
               </div>
               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                 Buy
@@ -43,16 +52,17 @@
             </div>
            
                
-            {% for i in products|slice:"1:" %}
+            {% for i in myProducts|slice:"1:" %}
 
             <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
               <a class="block relative h-48 rounded overflow-hidden">
-                <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/421x261">
+                <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="/media/  '{{i.Product_image}}' ">
               </a>
               <div class="mt-4">
-                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                <h2 class="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
-                <p class="mt-1">$21.15</p>
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{i.Product_desc}}</h3>
+                <h2 class="text-gray-900 title-font text-lg font-medium">{{i.Product_name}}</h2>
+                <h4 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{i.Product_desc}}</h4>
+                <p class="mt-1">${{i.Product_price}}</p>
               </div>
               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                 Buy
@@ -60,15 +70,28 @@
             </div>
           
             {% if forloop.counter|divisibleby:7 and forloop.counter > 0  and not forloop.last %}
-          </div> <div class="carousel-item ">
+          </div>
+        </div>
+       </section> 
+         </div>
+         <div class="carousel-item ">
+          <section class="text-gray-700 body-font">
+            <div class="container px-5 py-24 mx-auto">
+              <div class="flex flex-wrap -m-4">
+    
+    
+    
+                
             {% endif %}
 
            {% endfor %}
+           
+           </div>
           </div>
-         
+           </section>
           </div>
-        </div>
-        </div>
+      
+    
      
     <div class="inline-flex mx-20 ">
      
@@ -88,7 +111,7 @@
       </button>
     </div>
    
-  
+  </div> 
     
 
 
