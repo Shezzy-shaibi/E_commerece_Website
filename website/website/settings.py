@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog'
+    
 ]
 
 MIDDLEWARE = [
@@ -123,5 +124,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIR = (
+    os.path.join(BASE_DIR, 'statics'),
+)

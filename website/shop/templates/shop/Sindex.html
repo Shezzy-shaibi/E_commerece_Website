@@ -1,6 +1,8 @@
 
 {% extends 'shop/basic.html' %}
+
 {% block title %} ShopNow {% endblock %}
+
 <style>
   body .carousel-indicator li{
     background-color: blue;
@@ -9,25 +11,31 @@
   body .carousel-contron-prev-icon{
     background-color: blue;
   }
+  .carousel-control-next,
+  .carousel-contron-prev{
+    top:auto;
+    bottom:auto;
+  }
 </style>
+
 
     {% block body %}
     {% load static %}
   
-
-   <h1>Fashion</h1>
+ {% for prod,range,nslides in allprods%}
+   <h1>{{prod.0.Product_category}}</h1>
    <br>
    <br>
-    <div id="demo" class="carousel slide" data-ride="carousel">
+    <div id="demo{{ forloop.counter}}" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
-        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
 
         {% for i in range %}
 
-        <li data-target="#demo" data-slide-to="{{i}}"></li>
+        <li data-target="#demo{{forloop.parentloop.counter}}" data-slide="{{i}}"></li>
         {% endfor %}
       </ol>
-  <div class="container carousel-inner no-padding">
+  <di v class="container carousel-inner no-padding">
     <div class="carousel-item active">
       
       <section class="text-gray-700 body-font">
@@ -35,28 +43,16 @@
           <div class="flex flex-wrap -m-4">
 
 
-
-            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-              <a class="block relative h-48 rounded overflow-hidden">
-                <img alt="ecommerce" class="object-cover object-center w-full h-full block" src=' /media/ {{products.0.Product_image}} '>
-              </a>
-              <div class="mt-4">
-                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGARY</h3>
-                <h2 class="text-gray-900 title-font text-lg font-medium">{{myProducts.0.Product_name}}</h2>
-                <h4 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{myProducts.0.Product_desc}}</h4>
-                <p class="mt-1">${{myProducts.0.Product_price}}</p>
-              </div>
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                Buy
-              </button>
-            </div>
+          
+           
+            
            
                
-            {% for i in myProducts|slice:"1:" %}
-
+            {% for i in prod %}
+           
             <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
               <a class="block relative h-48 rounded overflow-hidden">
-                <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="/media/  '{{i.Product_image}}' ">
+                <img alt="ecommerce" class="object-cover object-center w-full h-full block" src='{{i.Product_image.url}}' >
               </a>
               <div class="mt-4">
                 <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{i.Product_desc}}</h3>
@@ -64,12 +60,12 @@
                 <h4 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{i.Product_desc}}</h4>
                 <p class="mt-1">${{i.Product_price}}</p>
               </div>
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+              <button id="pr{{i.id}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full cart">
                 Buy
               </button>
             </div>
-          
-            {% if forloop.counter|divisibleby:7 and forloop.counter > 0  and not forloop.last %}
+           
+            {% if forloop.counter|divisibleby:8 and forloop.counter > 0  and not forloop.last %}
           </div>
         </div>
        </section> 
@@ -96,25 +92,60 @@
     <div class="inline-flex mx-20 ">
      
       <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
-          <a class="carousel-control-prev-icon" href="#demo" data-slide-to="prev">
+          <a class="carousel-control-prev-icon" href="#demo{{forloop.counter}}" data-slide-to="prev">
             <span class="carousel-control-prev-icon"></span>
         Prev
         </a>
       </button>
       
       <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
-        <a class="carousel-control-next-icon" href="#demo" data-slide-to="next">
+        <a class="carousel-control-next-icon" href="#demo{{forloop.counter}}" data-slide-to="next">
           <span class="carousel-control-next-icon"></span>
         
         Next
         </a>
       </button>
     </div>
-   
+    <br>
+    <br>
+    <br>
+   {% endfor %}
   </div> 
     
 
 
 {% endblock %}
-      
+
+{% block js %}
+<script>
+  
+
+  console.log('working')
+    
+    if(localStorage.getItem('cart')== null)
+    {
+      var cart = {};
+     
+    }
+    else{
+      cart = JSON.parse(localStorage.getItem('cart'));
+    }
+    $('.cart').click(function(){
+      console.log('Clicked');
+      var idstr = this.id.toString();
+      console.log(idstr); 
+      if(cart[idstr] != undefined){
+     
+     cart[idstr] = cart[idstr] + 1;
+
+    }
+    else{
+      cart[idstr] = 1;
+    }
+   console.log(cart);
+   localStorage.setItem('cart', JSON.stringify(cart));
+    });
+  
+</script>
+{% endblock %}
 
