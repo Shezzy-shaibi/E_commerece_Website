@@ -10,11 +10,11 @@
     <title>{% block title %} {% endblock %}</title>
     
 </head>
-<div class="container mx-auto ">
+<div class="container-fluid ">
 <body>
     
  
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="my-4 navbar navbar-expand-lg navbar-dark bg-dark">
     <a id="#1" class="navbar-brand" href="#" onclick="msg()">LootoRy</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -23,33 +23,45 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a id="#2" class="nav-link" href="#">Home <span class="sr-only" >(current)</span></a>
+          <a id="#2" class="nav-link" href="/shop/">Home <span class="sr-only" >(current)</span></a>
         </li>
         <li class="nav-item">
-          <a id="#3" class="nav-link" href="#">How its Work</a>
+          <a id="#3" class="nav-link" href="/shop/How_its_Work">How_its_Work</a>
         </li>
         <li class="nav-item dropdown">
-          <a id="#4" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a id="#4" class="nav-link dropdown-toggle" href="/shop/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             CATEGORIES
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a id="#5" class="dropdown-item" href="#">Men_Fashion</a>
-            <a id= "#6" class="dropdown-item" href="#">Women_Fashion</a>
+            <a id="#5" class="dropdown-item" href="/shop/Men_Fashion">Men_Fashion</a>
+            <a id= "#6" class="dropdown-item" href="/shop/Women_Fashion">Women_Fashion</a>
             <div class="dropdown-divider"></div>
-            <a id="#7"class="dropdown-item" href="#">Health_n_Beauty</a>
+            <a id="#7"class="dropdown-item" href="/shop/Health_n_Beauty">Health_n_Beauty</a>
           </div>
         </li>
+        
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <a id="#3" class="nav-link" href="/shop/contact">Contact Us</a>
         </li>
+        
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+          <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+        </svg></button>
       </form>
+      <button id="popcart" type="button" class="ml-3 btn btn-outline-secondary " data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus.">
+<svg  class="bi bi-cart3" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+</svg>
+</button>
+<h7 style="color: cornsilk;"><span id="cart">0</span></h7>
     </div>
   </nav>
-  <h1>Welcome to Home</h1>
+  
     {% block body %}  
    
     {% endblock %}
@@ -113,8 +125,8 @@
             <div class="lg:w-1/4 md:w-1/2 w-full px-4">
               <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">SUBSCRIBE</h2>
               <div class="flex xl:flex-no-wrap md:flex-no-wrap lg:flex-wrap flex-wrap justify-center md:justify-start">
-                <input class="w-40 sm:w-auto bg-gray-100 rounded xl:mr-4 lg:mr-0 sm:mr-4 mr-2 border border-gray-400 focus:outline-none focus:border-indigo-500 text-base py-2 px-4" placeholder="Placeholder" type="text">
-                <button class="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Button</button>
+                <input class="w-40 sm:w-auto bg-gray-100 rounded xl:mr-4 lg:mr-0 sm:mr-4 mr-2 border border-gray-400 focus:outline-none focus:border-indigo-500 text-base py-2 px-4" placeholder="Enter your Email" type="text">
+                <button class=" my-3 lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Subscribe</button>
               </div>
               <p class="text-gray-500 text-sm mt-2 md:text-left text-center">Bitters chicharrones fanny pack
                 <br class="lg:block hidden">waistcoat green juice

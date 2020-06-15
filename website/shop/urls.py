@@ -4,7 +4,8 @@ from . import views
 urlpatterns = [
     path("",views.home,name="sindex"),
     
-    path("contact",views.contact,name="contactUs"),
+    path("contact/",views.contact,name="contactUs"),
+    path("productView/<int:myid>",views.productView,name="productView")
     
     
 

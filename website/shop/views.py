@@ -16,6 +16,7 @@ def home(request):
        nslides = n//8 + ceil((n/8)-(n//8))
        allprods.append([prod,range(1,nslides),nslides])
    mydict= {'allprods':allprods}
+   
    return render(request,'shop/Sindex.html',mydict)
 
 def contact(request):
@@ -23,3 +24,8 @@ def contact(request):
 
 def Category(request):
     return render(request,'shop/newCategory.html')
+def productView(request, myid):
+    
+    prod = product.objects.filter(id=myid)
+    
+    return render(request,'shop/productView.html',{'prod':prod[0]})

@@ -20,10 +20,10 @@
 
 
     {% block body %}
-    {% load static %}
+     {% load static %}
   
  {% for prod,range,nslides in allprods%}
-   <h1>{{prod.0.Product_category}}</h1>
+   <h1>{{prod.Product_category}}</h1>
    <br>
    <br>
     <div id="demo{{ forloop.counter}}" class="carousel slide" data-ride="carousel">
@@ -35,9 +35,11 @@
         <li data-target="#demo{{forloop.parentloop.counter}}" data-slide="{{i}}"></li>
         {% endfor %}
       </ol>
-  <di v class="container carousel-inner no-padding">
+  <div class=" container carousel-inner no-padding">
     <div class="carousel-item active">
       
+      
+
       <section class="text-gray-700 body-font">
         <div class="container px-5 py-24 mx-auto">
           <div class="flex flex-wrap -m-4">
@@ -60,33 +62,40 @@
                 <h4 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{i.Product_desc}}</h4>
                 <p class="mt-1">${{i.Product_price}}</p>
               </div>
-              <button id="pr{{i.id}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full cart">
-                Buy
+              <a href="/shop/productView/{{i.id}}">
+              <button id="pr{{i.id}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ">
+                Select
               </button>
+              </a>
             </div>
-           
+        
+        
             {% if forloop.counter|divisibleby:8 and forloop.counter > 0  and not forloop.last %}
+        
           </div>
         </div>
        </section> 
          </div>
+            
+
+
          <div class="carousel-item ">
           <section class="text-gray-700 body-font">
             <div class="container px-5 py-24 mx-auto">
               <div class="flex flex-wrap -m-4">
     
-    
-    
+                
                 
             {% endif %}
 
+            
+        
            {% endfor %}
-           
-           </div>
           </div>
-           </section>
-          </div>
-      
+        </div>
+         </section>
+        </div>
+    
     
      
     <div class="inline-flex mx-20 ">
@@ -98,7 +107,7 @@
         </a>
       </button>
       
-      <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+      <button class=" bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r ml-20">
         <a class="carousel-control-next-icon" href="#demo{{forloop.counter}}" data-slide-to="next">
           <span class="carousel-control-next-icon"></span>
         
@@ -120,32 +129,10 @@
 <script>
   
 
-  console.log('working')
-    
-    if(localStorage.getItem('cart')== null)
-    {
-      var cart = {};
-     
-    }
-    else{
-      cart = JSON.parse(localStorage.getItem('cart'));
-    }
-    $('.cart').click(function(){
-      console.log('Clicked');
-      var idstr = this.id.toString();
-      console.log(idstr); 
-      if(cart[idstr] != undefined){
-     
-     cart[idstr] = cart[idstr] + 1;
-
-    }
-    else{
-      cart[idstr] = 1;
-    }
-   console.log(cart);
-   localStorage.setItem('cart', JSON.stringify(cart));
-    });
   
+  $('#popcart').popover();
+  document.getElementById('popcart').setAttribute('data-content','<h3>This is the cart your items show here</h3>');
+   
 </script>
 {% endblock %}
 
