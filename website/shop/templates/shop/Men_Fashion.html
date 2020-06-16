@@ -1,29 +1,12 @@
-
 {% extends 'shop/basic.html' %}
+{% block title %} Men_Fashion {% endblock %}
+{% block body %}
 
-{% block title %} ShopNow {% endblock %}
-
-<style>
-  body .carousel-indicator li{
-    background-color: blue;
-  }
-  body .carousel-control-next-icon,
-  body .carousel-contron-prev-icon{
-    background-color: blue;
-  }
-  .carousel-control-next,
-  .carousel-contron-prev{
-    top:auto;
-    bottom:auto;
-  }
-</style>
+{% load static %}
 
 
-    {% block body %}
-     {% load static %}
-  
- {% for prod,range,nslides in allprods%}
-   <h1>{{prod.Product_category}}</h1>
+ {% for sub_prod,range,sub_nslides in sub_allprods%}
+   <h1>{{sub_prod.Product_subcategory}}</h1>
    <br>
    <br>
     <div id="demo{{ forloop.counter}}" class="carousel slide" data-ride="carousel">
@@ -51,7 +34,7 @@
             
            
                
-            {% for i in prod %}
+            {% for i in sub_prod %}
            
             <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
               <a class="block relative h-48 rounded overflow-hidden">
@@ -123,17 +106,8 @@
    {% endfor %}
  </div>
  
-    
+
+
 
 
 {% endblock %}
-
-{% block js %}
-<script>
-  
-
-  
- 
-</script>
-{% endblock %}
-
