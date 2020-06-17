@@ -38,20 +38,20 @@ def productView(request, myid):
     
    return render(request,'shop/productView.html',{'prod':prod[0]})
 def Men_Fashion(request):
+        
+        sub_allprods = []
+        sub_catprods = product.objects.values('Product_subcategory','id')
+        sub_cats = {sub_item['Product_subcategory'] for sub_item in sub_catprods}
     
-       
-    sub_allprods = []
-    sub_catprods = product.objects.values('Product_subcategory','id')
-    sub_cats = {sub_item['Product_subcategory'] for sub_item in sub_catprods}
-    for sub_cat in sub_cats:
-        sub_prod = product.objects.filter(Product_subcategory=sub_cat)
-        sub_n = len(sub_prod)
-        sub_nslides = sub_n//8 + ceil((sub_n/8)-(sub_n//8))
-        sub_allprods.append([sub_prod,range(1,sub_nslides),sub_nslides])
+        for sub_cat in sub_cats:
+            sub_prod = product.objects.filter(Product_subcategory=sub_cat)
+            sub_n = len(sub_prod)
+            sub_nslides = sub_n//8 + ceil((sub_n/8)-(sub_n//8)) 
+            sub_allprods.append([sub_prod,range(1,sub_nslides),sub_nslides])
 
-    sub_mydict = {'sub_allprods':sub_allprods}
+        sub_mydict = {'sub_allprods':sub_allprods}
 
-    return render(request,'shop/Men_Fashion.html',sub_mydict)
+        return render(request,'shop/Men_Fashion.html',sub_mydict)
 def Women_Fashion(request):
     
     

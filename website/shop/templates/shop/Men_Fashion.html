@@ -5,6 +5,8 @@
 {% load static %}
 
 
+
+
  {% for sub_prod,range,sub_nslides in sub_allprods%}
    <h1>{{sub_prod.Product_subcategory}}</h1>
    <br>
@@ -31,7 +33,7 @@
 
           
            
-            
+        
            
                
             {% for i in sub_prod %}
@@ -41,9 +43,9 @@
                 <img alt="ecommerce" class="object-cover object-center w-full h-full block" src='{{i.Product_image.url}}' >
               </a>
               <div class="mt-4">
-                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{i.Product_desc}}</h3>
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{i.Product_category}}</h3>
                 <h2 class="text-gray-900 title-font text-lg font-medium">{{i.Product_name}}</h2>
-                <h4 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{i.Product_desc}}</h4>
+                <h4 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{i.Product_subcategory}}</h4>
                 <p class="mt-1">${{i.Product_price}}</p>
               </div>
               <a href="/shop/productView/{{i.id}}">

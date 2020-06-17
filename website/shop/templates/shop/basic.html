@@ -57,8 +57,9 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 <svg  class="bi bi-cart3" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
 </svg>
+<span id="cart">0</span>
 </button>
-<h7 style="color: cornsilk;"><span id="cart">0</span></h7>
+
     </div>
   </nav>
   
@@ -182,12 +183,82 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   
     <script>
-      $('#popcart').popover();
+      if(localStorage.getItem('cart')== null)
+    {
+      var cart = {};
+     
+    }
+    else{
+      cart = JSON.parse(localStorage.getItem('cart'));
+      document.getElementById('cart').innerHTML=Object.keys(cart).length;
+      QuantShow(cart)
+      updatecart(cart);
+    }
+    $('.cart').click(function(){
+      console.log('Clicked');
+      var idstr = this.id.toString();
+      console.log(idstr); 
+      if(cart[idstr] != undefined){
+     
+     cart[idstr] = cart[idstr] + 1;
+ 
+    }
+    else{
+      cart[idstr] = 1;
+    }
+  
+  updatecart(cart);
+  QuantShow(cart)
+   localStorage.setItem('cart', JSON.stringify(cart));
+   document.getElementById('cart').innerHTML=Object.keys(cart).length;
+   });
+
+
+
+  $('#popcart').popover();
   document.getElementById('popcart').setAttribute('data-content','<h3>This is the cart your items show here</h3>');
+
+  function updatecart(cart){
+  for (var item in cart){
+   console.log(cart);
+   document.getElementById('div' + item).innerHTML = "<button id='minus" + item + " ' class = 'btn btn-primary minus'>Remove</button> <button  id='plus "  + item + " ' class = 'btn btn-primary plus' > Add </button>";
+  
+  }
+}
+function QuantShow(cart){
+for(var item in cart){
+  document.getElementById('quant'+ item).innerHTML = "<button id='quant"  + item + " ' class = 'btn btn-outline-secondary quant'>Items of  {{prod.Product_name}}  = "+  cart[item] +" </button>";
+}
+
+  }
+  $('.divpr').on('click','button.minus', function(){
+console.log("Remove");
+a = this.id.slice(7, );
+console.log(cart);
+console.log(a);
+n = 'pr'+a;
+console.log(n);
+console.log(cart['n']);
+cart["'pr' + a "] = cart["'pr'+ a" ] -1;
+document.getElementById('quant' + a).innerHTML = "Items of  {{prod.Product_name}}  =  " + cart['pr'+a] +" "  ;
+   
+  
+  });
+
+  $('.divpr').on('click','button.plus', function(){
+console.log("Add");
+var a = this.id.slice(7, );
+console.log(a);
+cart[a] = cart[a] +1;
+console.log(cart[a]);
+document.getElementById('quant' + a).innerHTML = "Items of  {{prod.Product_name}}  =  " + cart[ a] +" "  ;
+   
+  });
 </script>
+
     {% block js %}
    
-   
+    
    {% endblock %}
      
   </body>

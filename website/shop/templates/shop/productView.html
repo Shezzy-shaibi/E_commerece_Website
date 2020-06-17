@@ -74,50 +74,32 @@ ProductView
             </div>
           </div>
           <div class="flex">
+           
             <span class="title-font font-medium text-2xl text-gray-900">{{prod.Product_price}}</span>
-            <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded cart">Buy</button>
+            
+          <span id="divpr{{prod.id}}" class="ml-auto divpr">  <button id="pr{{prod.id}}" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded cart">Buy</button></span>
+            
             <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
               <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
                 <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
               </svg>
+              
             </button>
+            
+           
           </div>
+          <br>
+          <br>
+          <span id="quantpr{{prod.id}}" class="quantpr">
+          <button class="ml-20 btn btn-outline-secondary" >Items of  {{prod.Product_name}}  =  0 </button>
+        </span>
         </div>
       </div>
     </div>
   </section>
 {%endblock %}
 
+
 {% block js %}
-<script>
-
-console.log('working')
-    
-    if(localStorage.getItem('cart')== null)
-    {
-      var cart = {};
-     
-    }
-    else{
-      cart = JSON.parse(localStorage.getItem('cart'));
-      document.getElementById('cart').innerHTML=Object.keys(cart).length;
-    }
-    $('.cart').click(function(){
-      console.log('Clicked');
-      var idstr = this.id.toString();
-      console.log(idstr); 
-      if(cart[idstr] != undefined){
-     
-     cart[idstr] = cart[idstr] + 1;
- 
-    }
-    else{
-      cart[idstr] = 1;
-    }
-   console.log(cart);
-   localStorage.setItem('cart', JSON.stringify(cart));
-   });
-
-</script>
 
 {% endblock %}
