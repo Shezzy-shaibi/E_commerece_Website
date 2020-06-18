@@ -208,7 +208,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
     }
   
   updatecart(cart);
-  QuantShow(cart)
+  QuantShow(cart);
    localStorage.setItem('cart', JSON.stringify(cart));
    document.getElementById('cart').innerHTML=Object.keys(cart).length;
    });
@@ -221,37 +221,32 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
   function updatecart(cart){
   for (var item in cart){
    console.log(cart);
-   document.getElementById('div' + item).innerHTML = "<button id='minus" + item + " ' class = 'btn btn-primary minus'>Remove</button> <button  id='plus "  + item + " ' class = 'btn btn-primary plus' > Add </button>";
+   document.getElementById('div' + item).innerHTML = "<button id='minus"+ item +"' class = 'btn btn-primary minus'>Remove</button> <button  id='plus"  + item + "' class = 'btn btn-primary plus' > Add </button>";
   
   }
 }
 function QuantShow(cart){
 for(var item in cart){
-  document.getElementById('quant'+ item).innerHTML = "<button id='quant"  + item + " ' class = 'btn btn-outline-secondary quant'>Items of  {{prod.Product_name}}  = "+  cart[item] +" </button>";
+  document.getElementById('quant'+ item).innerHTML = "<button id='quant"  + item + "' class = 'ml-20 btn btn-outline-secondary quant'>Items of  {{prod.Product_name}}  = "+  cart[item] +" </button>";
 }
 
   }
   $('.divpr').on('click','button.minus', function(){
 console.log("Remove");
 a = this.id.slice(7, );
-console.log(cart);
-console.log(a);
-n = 'pr'+a;
-console.log(n);
-console.log(cart['n']);
-cart["'pr' + a "] = cart["'pr'+ a" ] -1;
-document.getElementById('quant' + a).innerHTML = "Items of  {{prod.Product_name}}  =  " + cart['pr'+a] +" "  ;
+
+cart['pr'+a] = cart['pr'+a] -1;
+cart['pr'+a]=Math.max(0,cart['pr'+a]);
+document.getElementById('quantpr' + a).innerHTML = " <button class='ml-20 btn btn-outline-secondary' >Items of  {{prod.Product_name}}  =  "+ cart['pr'+a] +" </button>"  ;
    
   
   });
 
   $('.divpr').on('click','button.plus', function(){
 console.log("Add");
-var a = this.id.slice(7, );
-console.log(a);
-cart[a] = cart[a] +1;
-console.log(cart[a]);
-document.getElementById('quant' + a).innerHTML = "Items of  {{prod.Product_name}}  =  " + cart[ a] +" "  ;
+a = this.id.slice(6, );
+cart['pr'+a] = cart['pr'+a] +1;
+document.getElementById('quantpr' + a).innerHTML = " <button class='ml-20 btn btn-outline-secondary' >Items of  {{prod.Product_name}}  =  "+ cart['pr'+a] +" </button> "  ;
    
   });
 </script>
