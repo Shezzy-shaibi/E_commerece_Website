@@ -227,7 +227,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 }
 function QuantShow(cart){
 for(var item in cart){
-  document.getElementById('quant'+ item).innerHTML = "<button id='quant"  + item + "' class = 'ml-20 btn btn-outline-secondary quant'>Items of  {{prod.Product_name}}  = "+  cart[item] +" </button>";
+  document.getElementById('quant'+ item).innerHTML = "<button id='quant"  + item + "' class = 'mx-auto btn btn-secondary quant'>Items of  {{prod.Product_name}}  = "+  cart[item] +" </button>";
 }
 
   }
@@ -236,17 +236,17 @@ console.log("Remove");
 a = this.id.slice(7, );
 
 cart['pr'+a] = cart['pr'+a] -1;
-cart['pr'+a]=Math.max(0,cart['pr'+a]);
-document.getElementById('quantpr' + a).innerHTML = " <button class='ml-20 btn btn-outline-secondary' >Items of  {{prod.Product_name}}  =  "+ cart['pr'+a] +" </button>"  ;
-   
-  
+cart['pr'+a]=Math.max(0,cart['pr'+a]);  
+ document.getElementById('quantpr' + a).innerHTML = " <button class='mx-auto btn btn-secondary' >Items of  {{prod.Product_name}}  =  "+ cart['pr'+a] +" </button>"  ;
+ 
   });
-
+ 
+  
   $('.divpr').on('click','button.plus', function(){
 console.log("Add");
 a = this.id.slice(6, );
 cart['pr'+a] = cart['pr'+a] +1;
-document.getElementById('quantpr' + a).innerHTML = " <button class='ml-20 btn btn-outline-secondary' >Items of  {{prod.Product_name}}  =  "+ cart['pr'+a] +" </button> "  ;
+document.getElementById('quantpr' + a).innerHTML = " <button class='mx-auto btn btn-secondary' >Items of  {{prod.Product_name}}  =  "+ cart['pr'+a] +" </button> "  ;
    
   });
 </script>
