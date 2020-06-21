@@ -182,79 +182,93 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   
-    <script>
-      if(localStorage.getItem('cart')== null)
-    {
-      var cart = {};
-     
-    }
-    else{
-      cart = JSON.parse(localStorage.getItem('cart'));
-      document.getElementById('cart').innerHTML=Object.keys(cart).length;
-      QuantShow(cart)
-      updatecart(cart);
-    }
-    $('.cart').click(function(){
-      console.log('Clicked');
-      var idstr = this.id.toString();
-      console.log(idstr); 
-      if(cart[idstr] != undefined){
-     
-     cart[idstr] = cart[idstr] + 1;
- 
-    }
-    else{
-      cart[idstr] = 1;
-    }
-  
-  updatecart(cart);
-  QuantShow(cart);
-   localStorage.setItem('cart', JSON.stringify(cart));
-   document.getElementById('cart').innerHTML=Object.keys(cart).length;
-   });
-
-
-
-  $('#popcart').popover();
-  document.getElementById('popcart').setAttribute('data-content','<h3>This is the cart your items show here</h3>');
-
-  function updatecart(cart){
-  for (var item in cart){
-   console.log(cart);
-   document.getElementById('div' + item).innerHTML = "<button id='minus"+ item +"' class = 'btn btn-primary minus'>Remove</button> <button  id='plus"  + item + "' class = 'btn btn-primary plus' > Add </button>";
-  
+  <script>
+      
+    if(localStorage.getItem('cart')== null)
+  {
+    var cart = {};
   }
+  else{
+  cart = JSON.parse(localStorage.getItem('cart'));
+  
+  } 
+  $('.cart').click(function(){
+  // $('.divpr').on('click','button.cart',function(){
+  var idstr = this.id.toString();
+  
+  if(cart[idstr] != undefined){
+ 
+ cart[idstr] = cart[idstr] + 1;
+
 }
+else{
+  cart[idstr] = 1;
+}
+
+updatecart(cart);
+QuantShow(cart);
+
+});
+
+
+
+$('#popcart').popover();
+document.getElementById('popcart').setAttribute('data-content','<h3>This is the cart your items show here</h3>');
+
+
+
+function updatecart(cart){
+var sum =0;
+for (var item in cart){
+sum = sum + cart[item];
+console.log(cart);
+document.getElementById("div" + item).innerHTML = "<button id='minus"+ item +"' class = 'ml-2 btn btn-primary minus'>Remove</button>  <button  id='plus"  + item + "' class = 'mr-2 btn btn-primary plus' > Add </button>";
+
+
+}
+
+document.getElementById('cart').innerHTML=sum;
+
+
+    }
+
+
 function QuantShow(cart){
 for(var item in cart){
-  document.getElementById('quant'+ item).innerHTML = "<button id='quant"  + item + "' class = 'mx-auto btn btn-secondary quant'>Items of  {{prod.Product_name}}  = "+  cart[item] +" </button>";
+document.getElementById('quant'+ item).innerHTML = "<button id='quant"  + item + "' class = 'mx-auto btn btn-secondary quant'>Items of  {{prod.Product_name}}  = "+  cart[item] +" </button>";
 }
 
+
   }
-  $('.divpr').on('click','button.minus', function(){
+
+
+
+$('.divpr').on('click','button.minus', function(){
 console.log("Remove");
 a = this.id.slice(7, );
 
 cart['pr'+a] = cart['pr'+a] -1;
 cart['pr'+a]=Math.max(0,cart['pr'+a]);  
- document.getElementById('quantpr' + a).innerHTML = " <button class='mx-auto btn btn-secondary' >Items of  {{prod.Product_name}}  =  "+ cart['pr'+a] +" </button>"  ;
- 
-  });
- 
-  
-  $('.divpr').on('click','button.plus', function(){
+document.getElementById('quantpr' + a).innerHTML = " <button class='mx-auto btn btn-secondary' >Items of  {{prod.Product_name}}  =  "+ cart['pr'+a] +" </button>"  ;
+
+});
+
+
+$('.divpr').on('click','button.plus', function(){
 console.log("Add");
 a = this.id.slice(6, );
 cart['pr'+a] = cart['pr'+a] +1;
 document.getElementById('quantpr' + a).innerHTML = " <button class='mx-auto btn btn-secondary' >Items of  {{prod.Product_name}}  =  "+ cart['pr'+a] +" </button> "  ;
-   
-  });
+
+});
 </script>
 
-    {% block js %}
-   
     
+</script>
+  
+  {% block js %}
    {% endblock %}
+  
      
   </body>
 </html>

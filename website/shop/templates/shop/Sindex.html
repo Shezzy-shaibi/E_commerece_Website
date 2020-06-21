@@ -64,15 +64,16 @@
                 <p class="mt-1">${{i.Product_price}}</p>
               </div>
               <a href="/shop/productView/{{i.id}}">
-              <button id="pr{{i.id}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ">
+              <button  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ">
                 Select
               </button>
+              
               </a>
             </div>
         
         
             {% if forloop.counter|divisibleby:8 and forloop.counter > 0  and not forloop.last %}
-        
+         
           </div>
         </div>
        </section> 
@@ -125,15 +126,16 @@
  
     
 
-
 {% endblock %}
+
+
 
 {% block js %}
 <script>
   
-
-  
  
+   
+  
 </script>
 {% endblock %}
 
